@@ -48,7 +48,7 @@ class takeHome {
         }
 
         System.out.println(" ");
-        System.out.println("================= SALARY COMPUTATION WITH DEDUCTIONS (Old) ===================");
+        System.out.println("================= SALARY COMPUTATION WITH DEDUCTIONS (OLD) ===================");
         System.out.println("Your annual salary is         : " + ft.format(annualSalary));
         System.out.println("Your annual tax liability is  : " + ft.format(totalTax));
         System.out.println("Your monthly salary is        : " + ft.format(annualSalary/12.0));
@@ -67,7 +67,7 @@ class takeHome {
             }
         }
         System.out.println(" ");
-        System.out.println("================= SALARY COMPUTATION WITHOUT DEDUCTIONS (New) ===================");
+        System.out.println("================= SALARY COMPUTATION WITHOUT DEDUCTIONS (NEW) ===================");
         System.out.println("Your annual salary is         : " + ft.format(annualSalary));
         System.out.println("Your annual tax liability is  : " + ft.format(totalTax));
         System.out.println("Your monthly salary is        : " + ft.format(annualSalary/12.0));
