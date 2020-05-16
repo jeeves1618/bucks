@@ -16,3 +16,4 @@ The goal of this project is to create reusable programs for tax computation, sav
 	- Junit Tests
 	- Host the application in an Apache Tomcat server
 	- Rewrite the takeHome class so that it returns values rather than printing it.
+7. services.msc is the command to list Windows services.
