@@ -1,14 +1,14 @@
 package Bucks;
-class takeHome {
+public class takeHome {
     private double houseLoanInt;
     private double professionalTax;
-    protected double PF;
+    public double PF;
     private double section80c;
     private double standardDeduction;
     private double employmentTax;
-    protected double annualSalary;
-    protected double monthlyTakeHome;
-    protected double totalTax;
+    public double annualSalary;
+    public double monthlyTakeHome;
+    public double totalTax;
 
     takeHome() {
     }
@@ -20,13 +20,17 @@ class takeHome {
         employmentTax=2500.0D;
 
         this.houseLoanInt = houseLoanInt;
-        this.PF = pf;
+        if (pf > 0.0D)
+            this.PF = pf;
+        else
+            this.PF = (annualSalary * 0.4 * 0.12) / 12;
         this.annualSalary = annualSalary;
     }
 
     public void calculateOldTakeHome() {
 
         double remainingSalary = 0.0D;
+
         totalTax = 0.0D;
         int[] salarySlab = new int[]{250000, 250000, 500000, 1000000};
         double[] taxRate = new double[]{0.0D, 5.2D, 20.8D, 31.2D};
