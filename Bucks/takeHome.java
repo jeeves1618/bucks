@@ -1,18 +1,14 @@
 package Bucks;
-import java.text.DecimalFormat;
-
 class takeHome {
     private double houseLoanInt;
     private double professionalTax;
-    private double PF;
+    protected double PF;
     private double section80c;
     private double standardDeduction;
     private double employmentTax;
-    private double annualSalary;
-    private double monthlyTakeHome;
-    private double totalTax;
-
-    DecimalFormat ft = new DecimalFormat("Rs ##,##,###.##");
+    protected double annualSalary;
+    protected double monthlyTakeHome;
+    protected double totalTax;
 
     takeHome() {
     }
@@ -37,7 +33,7 @@ class takeHome {
 
         remainingSalary = annualSalary - section80c - standardDeduction - houseLoanInt - employmentTax;
 
-        for (int i = 0; i < 4 && annualSalary > 0.0D; ++i) {
+        for (int i = 0; i < 4 && remainingSalary > 0.0D; ++i) {
             totalTax += (double) salarySlab[i] * taxRate[i] / 100.0D;
             remainingSalary -= (double) salarySlab[i];
             if (i == 2) {
@@ -55,7 +51,7 @@ class takeHome {
         double[] taxRate2020 = new double[]{0.0D, 5.2D, 10.4D, 15.6D, 20.8D, 26.0D, 31.2D};
 
         remainingSalary = annualSalary;
-        for (int i = 0; i < 7 && annualSalary > 0.0D; ++i) {
+        for (int i = 0; i < 7 && remainingSalary > 0.0D; ++i) {
             totalTax += (double) salarySlab2020[i] * taxRate2020[i] / 100.0D;
             remainingSalary -= (double) salarySlab2020[i];
             if (i == 5) {
@@ -63,21 +59,5 @@ class takeHome {
             }
         }
         monthlyTakeHome = (annualSalary - totalTax - professionalTax - (PF * 12)) / 12.0D;
-    }
-
-    public void printSummary(boolean oldRegieme) {
-        System.out.println(" ");
-        if (oldRegieme){
-            System.out.println("================= SALARY COMPUTATION WITH DEDUCTIONS (OLD) ===================");
-        }
-        else{
-            System.out.println("================= SALARY COMPUTATION WITHOUT DEDUCTIONS (NEW) ===================");
-        }
-        System.out.println("Your annual salary is         : " + ft.format(annualSalary));
-        System.out.println("Your annual tax liability is  : " + ft.format(totalTax));
-        System.out.println("Your monthly salary is        : " + ft.format(annualSalary / 12.0));
-        System.out.println("Your monthly tax liability is : " + ft.format(totalTax / 12.0));
-        System.out.println("Your monthly PF Contribution  : " + ft.format(PF));
-        System.out.println("Your net monthly take home is : " + ft.format(monthlyTakeHome));
     }
 }
