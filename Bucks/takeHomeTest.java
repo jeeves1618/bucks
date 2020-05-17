@@ -1,10 +1,12 @@
 package Bucks;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 class takeHomeTest {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+
         System.out.println("Please Enter your Annual Salary :");
         double PF = 0D, houseLoanInt = 0D;
         double annualSalary = scan.nextDouble();
@@ -33,12 +35,30 @@ class takeHomeTest {
 
         takeHomeInstance.calculateOldTakeHome();
         oldTaxRegulation = true;
-        takeHomeInstance.printSummary(oldTaxRegulation);
+        printSummary(oldTaxRegulation, takeHomeInstance);
 
         takeHomeInstance.calculateNewTakeHome();
         oldTaxRegulation = false;
-        takeHomeInstance.printSummary(oldTaxRegulation);
+        printSummary(oldTaxRegulation, takeHomeInstance);
 
         scan.close();
     }
+    public static void printSummary(boolean oldRegieme, takeHome takeHomeInstance) {
+        DecimalFormat ft = new DecimalFormat("Rs ##,##,###.##");
+        
+        System.out.println(" ");
+        if (oldRegieme){
+            System.out.println("================= SALARY COMPUTATION WITH DEDUCTIONS (OLD) ===================");
+        }
+        else{
+            System.out.println("================= SALARY COMPUTATION WITHOUT DEDUCTIONS (NEW) ===================");
+        }
+        System.out.println("Your annual salary is         : " + ft.format(takeHomeInstance.annualSalary));
+        System.out.println("Your annual tax liability is  : " + ft.format(takeHomeInstance.totalTax));
+        System.out.println("Your monthly salary is        : " + ft.format(takeHomeInstance.annualSalary / 12.0));
+        System.out.println("Your monthly tax liability is : " + ft.format(takeHomeInstance.totalTax / 12.0));
+        System.out.println("Your monthly PF Contribution  : " + ft.format(takeHomeInstance.PF));
+        System.out.println("Your net monthly take home is : " + ft.format(takeHomeInstance.monthlyTakeHome));
+    }
+
 }
