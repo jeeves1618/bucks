@@ -18,7 +18,7 @@ class takeHomeTest {
             System.out.println("What is you interest component for the whole year?");
             houseLoanInt = scan.nextDouble();
             if (houseLoanInt > 200000) houseLoanInt = 200000.0D;
-            if (houseLoanInt < 200000) houseLoanInt = 0.0D;
+            if (houseLoanInt < 0) houseLoanInt = 0.0D;
         }
 
         System.out.println("Do you know your PF deduction?");
@@ -27,8 +27,6 @@ class takeHomeTest {
             System.out.println("What is your monthly PF deduction?");
             PF = scan.nextDouble();
             if (PF < 0) PF = 0.0D;
-        } else {
-            PF = (annualSalary * 0.4 * 0.12) / 12;
         }
 
         takeHome takeHomeInstance = new takeHome(annualSalary, houseLoanInt ,PF);
