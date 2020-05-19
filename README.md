@@ -19,3 +19,6 @@ The goal of this project is to create reusable programs for tax computation, sav
 	- Host the application in an Apache Tomcat server
 	- Rewrite the takeHome class so that it returns values rather than printing it.
 7. services.msc is the command to list Windows services.
+8. To start SonarQube C:\sonarqube\sonarqube-8.3.1.34397\bin\windows-x86-64\StartSonar.bat
+	Sonar is avaialble in the port http://localhost:9000 
+	More about Sonar on: https://docs.sonarqube.org/latest/setup/get-started-2-minutes/
