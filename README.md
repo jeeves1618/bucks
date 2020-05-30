@@ -23,3 +23,7 @@ The goal of this project is to create reusable programs for tax computation, sav
 	Sonar is avaialble in the port http://localhost:9000 
 	More about Sonar on: https://docs.sonarqube.org/latest/setup/get-started-2-minutes/
 	stop the Sonar Server through Ctrl+c before closing the command window
+9. H2
+	Directory: cd c:\Program Files (x86)\H2\bin
+	To get into Shell: java -cp h2-*.jar org.h2.tools.Shell
+	<namerev>
