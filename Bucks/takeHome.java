@@ -1,17 +1,23 @@
 package Bucks;
+import java.text.DecimalFormat;
+
 public class takeHome {
     private double houseLoanInt;
     private double professionalTax;
-    public double PF;
     private double section80c;
     private double standardDeduction;
     private double employmentTax;
-    public double annualSalary;
+    protected double annualSalary;
     public double monthlyTakeHome;
-    public double totalTax;
+    protected double totalTax;
+    protected double PF;
 
-    takeHome() {
-    }
+    public String annualSalaryFmtd;
+    public String monthlyTakeHomeFmtd;
+    public String totalTaxFmtd;
+    public String PFFmtd;
+    public String monthlySalaryFmtd;
+    public String monthlyTaxFmtd;
 
     public takeHome(double annualSalary, double houseLoanInt, double pf) {
         professionalTax = 2496.0D;
@@ -27,6 +33,23 @@ public class takeHome {
         this.annualSalary = annualSalary;
     }
 
+    public takeHome(String itemDescription){
+        String fileWithPathname = "C:\\dev\\Data\\BL.xlsx";
+        ingestExcel balanceSheet = new ingestExcel(fileWithPathname);
+
+        bsheetElements[] bsheetElementsList;
+        bsheetElementsList = balanceSheet.transferData();
+        for (int i=0; i < bsheetElements.numofElements; i++){
+            if(bsheetElementsList[i].subType.equals("Salary") && bsheetElementsList[i].itemDescription.equals(itemDescription)) {
+                this.annualSalary = bsheetElementsList[i].cashValue;
+            }
+            professionalTax = 2496.0D;
+            section80c = 150000.0D;
+            standardDeduction = 50000.0D;
+            employmentTax=2500.0D;
+            this.PF = (annualSalary * 0.4 * 0.12) / 12;
+        }
+    }
     public void calculateOldTakeHome() {
 
         double remainingSalary = 0.0D;
@@ -45,6 +68,14 @@ public class takeHome {
             }
         }
         monthlyTakeHome = (annualSalary - totalTax - professionalTax - (PF*12)) / 12.0D;
+        DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
+        annualSalaryFmtd = ft.format(annualSalary);
+        totalTaxFmtd = ft.format(totalTax);
+        monthlySalaryFmtd = ft.format(annualSalary / 12.0);
+        monthlyTaxFmtd = ft.format(totalTax / 12.0);
+        PFFmtd = ft.format(PF);
+        monthlyTakeHomeFmtd = ft.format(monthlyTakeHome);
+
     }
 
     public void calculateNewTakeHome() {
@@ -63,5 +94,12 @@ public class takeHome {
             }
         }
         monthlyTakeHome = (annualSalary - totalTax - professionalTax - (PF * 12)) / 12.0D;
+        DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
+        annualSalaryFmtd = ft.format(annualSalary);
+        totalTaxFmtd = ft.format(totalTax);
+        monthlySalaryFmtd = ft.format(annualSalary / 12.0);
+        monthlyTaxFmtd = ft.format(totalTax / 12.0);
+        PFFmtd = ft.format(PF);
+        monthlyTakeHomeFmtd = ft.format(monthlyTakeHome);
     }
 }

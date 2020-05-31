@@ -29,8 +29,10 @@ class takeHomeTest {
             if (PF < 0) PF = 0.0D;
         }
 
-        takeHome takeHomeInstance = new takeHome(annualSalary, houseLoanInt ,PF);
-
+        System.out.println("Who are you?");
+        String whoAmI = scan.nextLine();
+        //takeHome takeHomeInstance = new takeHome(annualSalary, houseLoanInt ,PF);
+        takeHome takeHomeInstance = new takeHome(whoAmI);
         takeHomeInstance.calculateOldTakeHome();
         oldTaxRegulation = true;
         printSummary(oldTaxRegulation, takeHomeInstance);
@@ -42,7 +44,7 @@ class takeHomeTest {
         scan.close();
     }
     public static void printSummary(boolean oldRegieme, takeHome takeHomeInstance) {
-        DecimalFormat ft = new DecimalFormat("Rs ##,##,###.##");
+        DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
         
         System.out.println(" ");
         if (oldRegieme){
@@ -58,5 +60,4 @@ class takeHomeTest {
         System.out.println("Your monthly PF Contribution  : " + ft.format(takeHomeInstance.PF));
         System.out.println("Your net monthly take home is : " + ft.format(takeHomeInstance.monthlyTakeHome));
     }
-
 }
