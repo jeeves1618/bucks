@@ -10,7 +10,7 @@ public class H2JDBCconnect{
     //url for database in server mode
     private static String jdbcURL = "jdbc:h2:tcp://localhost/~/test";
     private static String jdbcUsername = "sa";
-    private static String jdbcPassword = "password";
+    private static String jdbcPassword = "yajiv";
 
     public static Connection getConnection(){
         Connection connection = null;

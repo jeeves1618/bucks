@@ -7,17 +7,13 @@ public class takeHome {
     private double section80c;
     private double standardDeduction;
     private double employmentTax;
-    protected double annualSalary;
-    public double monthlyTakeHome;
-    protected double totalTax;
-    protected double PF;
+    private double annualSalary;
+    private double monthlyTakeHome;
+    private double totalTax;
+    private double PF;
 
-    public String annualSalaryFmtd;
-    public String monthlyTakeHomeFmtd;
-    public String totalTaxFmtd;
-    public String PFFmtd;
-    public String monthlySalaryFmtd;
-    public String monthlyTaxFmtd;
+    DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
+    RupeeFormatter rf = new RupeeFormatter();
 
     public takeHome(double annualSalary, double houseLoanInt, double pf) {
         professionalTax = 2496.0D;
@@ -68,14 +64,6 @@ public class takeHome {
             }
         }
         monthlyTakeHome = (annualSalary - totalTax - professionalTax - (PF*12)) / 12.0D;
-        DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
-        annualSalaryFmtd = ft.format(annualSalary);
-        totalTaxFmtd = ft.format(totalTax);
-        monthlySalaryFmtd = ft.format(annualSalary / 12.0);
-        monthlyTaxFmtd = ft.format(totalTax / 12.0);
-        PFFmtd = ft.format(PF);
-        monthlyTakeHomeFmtd = ft.format(monthlyTakeHome);
-
     }
 
     public void calculateNewTakeHome() {
@@ -94,12 +82,33 @@ public class takeHome {
             }
         }
         monthlyTakeHome = (annualSalary - totalTax - professionalTax - (PF * 12)) / 12.0D;
-        DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
-        annualSalaryFmtd = ft.format(annualSalary);
-        totalTaxFmtd = ft.format(totalTax);
-        monthlySalaryFmtd = ft.format(annualSalary / 12.0);
-        monthlyTaxFmtd = ft.format(totalTax / 12.0);
-        PFFmtd = ft.format(PF);
-        monthlyTakeHomeFmtd = ft.format(monthlyTakeHome);
+    }
+
+    public String getAnnualSalaryFmtd(){
+        return rf.formattedRupee(ft.format(annualSalary));
+    }
+
+    public String getMonthlyTakeHomeFmtd(){
+        return rf.formattedRupee(ft.format(monthlyTakeHome));
+    }
+
+    public String getTotalTaxFmtd(){
+        return rf.formattedRupee(ft.format(totalTax));
+    }
+
+    public String getPFFmtd(){
+        return rf.formattedRupee(ft.format(PF));
+    }
+
+    public String getMonthlySalaryFmtd(){
+        return rf.formattedRupee(ft.format(annualSalary / 12.0));
+    }
+
+    public String getMonthlyTaxFmtd(){
+        return rf.formattedRupee(ft.format(totalTax / 12.0));
+    }
+
+    public double getmonthlyTakeHome(){
+        return monthlyTakeHome;
     }
 }

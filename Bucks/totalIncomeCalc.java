@@ -43,6 +43,7 @@ public class totalIncomeCalc {
         totalNonCurrentAssets = 0;
         totalNonCurrentLiabilities = 0;
         DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
+        RupeeFormatter rf = new RupeeFormatter();
         String fileWithPathname = "C:\\dev\\Data\\BL.xlsx";
         ingestExcel balanceSheet = new ingestExcel(fileWithPathname);
 
@@ -67,14 +68,14 @@ public class totalIncomeCalc {
             } else
                 if(bsheetElementsList[i].subType.equals("Total Current Assets") && bsheetElementsList[i].itemDescription.equals("Total Current Assets")) {
                 bsheetElementsList[i].cashValue = totalCurrentAssets;
-                bsheetElementsList[i].cashValueFmtd = ft.format(bsheetElementsList[i].cashValue);
+                bsheetElementsList[i].cashValueFmtd = rf.formattedRupee(ft.format(bsheetElementsList[i].cashValue));
             }else
                 if(bsheetElementsList[i].subType.equals("Current Assets") || bsheetElementsList[i].subType.equals("Account Receivables")) {
                     totalCurrentAssets = totalCurrentAssets + bsheetElementsList[i].cashValue;
             }  else
                 if(bsheetElementsList[i].subType.equals("Current Liabilities") && bsheetElementsList[i].itemDescription.equals("Current Liabilities")) {
                     bsheetElementsList[i].cashValue = totalCurrentLiabilities;
-                    bsheetElementsList[i].cashValueFmtd = ft.format(bsheetElementsList[i].cashValue);
+                    bsheetElementsList[i].cashValueFmtd = rf.formattedRupee(ft.format(bsheetElementsList[i].cashValue));
             }else
                 if(bsheetElementsList[i].subType.equals("Accrued Expenses") || bsheetElementsList[i].subType.equals("EMI") ||
                         bsheetElementsList[i].subType.equals("Account Payables")) {
@@ -82,14 +83,14 @@ public class totalIncomeCalc {
             }else
                 if(bsheetElementsList[i].subType.equals("Non Current Liabilities") && bsheetElementsList[i].itemDescription.equals("Non Current Liabilities")) {
                     bsheetElementsList[i].cashValue = totalNonCurrentLiabilities;
-                    bsheetElementsList[i].cashValueFmtd = ft.format(bsheetElementsList[i].cashValue);
+                    bsheetElementsList[i].cashValueFmtd = rf.formattedRupee(ft.format(bsheetElementsList[i].cashValue));
             }else
                 if(bsheetElementsList[i].subType.equals("Long Term Debts")) {
                     totalNonCurrentLiabilities = totalNonCurrentLiabilities + bsheetElementsList[i].cashValue;
             }else
                 if(bsheetElementsList[i].subType.equals("Total Non Current Assets") && bsheetElementsList[i].itemDescription.equals("Total Non Current Assets")) {
                     bsheetElementsList[i].cashValue = totalNonCurrentAssets;
-                    bsheetElementsList[i].cashValueFmtd = ft.format(bsheetElementsList[i].cashValue);
+                    bsheetElementsList[i].cashValueFmtd = rf.formattedRupee(ft.format(bsheetElementsList[i].cashValue));
             }else
                 if(bsheetElementsList[i].subType.equals("Fixed Assets") || bsheetElementsList[i].subType.equals("Other Assets")) {
                     totalNonCurrentAssets = totalNonCurrentAssets + bsheetElementsList[i].cashValue;
@@ -98,17 +99,17 @@ public class totalIncomeCalc {
         incomeTotal = monthlyTakeHomeOne + monthlyTakeHomeTwo + rentalIncomeOne + rentalIncomeTwo + rentalIncomeThree;
         netSavings = incomeTotal - monthlyExpenses - monthlyEMI;
 
-        rentalIncomeOneFmtd = ft.format(rentalIncomeOne);
-        rentalIncomeTwoFmtd = ft.format(rentalIncomeTwo);
-        rentalIncomeThreeFmtd = ft.format(rentalIncomeThree);
-        monthlyExpensesFmtd = ft.format(monthlyExpenses);
-        annualExpensesFmtd = ft.format(monthlyExpenses*12);
-        incomeTotalFmtd = ft.format(incomeTotal);
-        monthlyEMIFmtd=ft.format(monthlyEMI);
-        netSavingsFmtd = ft.format(netSavings);
-        totalLiabilitiesFmtd = ft.format(totalCurrentLiabilities + totalNonCurrentLiabilities);
-        totalAssetsFmtd = ft.format(totalCurrentAssets + totalNonCurrentAssets);
-        netWorthFmtd = ft.format(totalCurrentAssets + totalNonCurrentAssets - totalCurrentLiabilities - totalNonCurrentLiabilities);
+        rentalIncomeOneFmtd = rf.formattedRupee(ft.format(rentalIncomeOne));
+        rentalIncomeTwoFmtd = rf.formattedRupee(ft.format(rentalIncomeTwo));
+        rentalIncomeThreeFmtd = rf.formattedRupee(ft.format(rentalIncomeThree));
+        monthlyExpensesFmtd = rf.formattedRupee(ft.format(monthlyExpenses));
+        annualExpensesFmtd = rf.formattedRupee(ft.format(monthlyExpenses*12));
+        incomeTotalFmtd = rf.formattedRupee(ft.format(incomeTotal));
+        monthlyEMIFmtd=rf.formattedRupee(ft.format(monthlyEMI));
+        netSavingsFmtd = rf.formattedRupee(ft.format(netSavings));
+        totalLiabilitiesFmtd = rf.formattedRupee(ft.format(totalCurrentLiabilities + totalNonCurrentLiabilities));
+        totalAssetsFmtd = rf.formattedRupee(ft.format(totalCurrentAssets + totalNonCurrentAssets));
+        netWorthFmtd = rf.formattedRupee(ft.format(totalCurrentAssets + totalNonCurrentAssets - totalCurrentLiabilities - totalNonCurrentLiabilities));
         survivalDate =  LocalDate.now().plusDays(Math.round((totalCurrentAssets-1001515)*365/totalCurrentLiabilities));
         survivalDateFmtd = survivalDate.toString();
     }

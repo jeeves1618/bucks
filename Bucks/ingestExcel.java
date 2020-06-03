@@ -14,6 +14,7 @@ public class ingestExcel{
 
     private static String fileWithPathname;
     DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
+    RupeeFormatter rf = new RupeeFormatter();
     bsheetElements[] bsheetElementsList = new bsheetElements[100];
 
     public ingestExcel(String fileWithPathname){
@@ -52,7 +53,7 @@ public class ingestExcel{
                             switch (cell.getColumnIndex()) {
                             case 3:
                                 bsheetElementsList[bsIterator].cashValue = cell.getNumericCellValue();
-                                bsheetElementsList[bsIterator].cashValueFmtd = ft.format(bsheetElementsList[bsIterator].cashValue);
+                                bsheetElementsList[bsIterator].cashValueFmtd = rf.formattedRupee(ft.format(bsheetElementsList[bsIterator].cashValue));
                                 //System.out.print(bsheetElementsList[bsIterator].cashValue + "t");
                                 break;
                             default:

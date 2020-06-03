@@ -11,6 +11,7 @@ public class IngestH2db{
     public static void main(String[] args) {
         int bsIterator = 0;
         DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
+        RupeeFormatter rf = new RupeeFormatter();
         bsheetElements[] bsheetElementsList = new bsheetElements[100];
 
         // Step 1: Establishing a Connection
@@ -32,7 +33,7 @@ public class IngestH2db{
                 bsheetElementsList[bsIterator].subType = rs.getString("BALSUBTYPE");
                 bsheetElementsList[bsIterator].itemDescription = rs.getString("BALDESCCODE");
                 bsheetElementsList[bsIterator].cashValue = rs.getDouble("BALAMOUNT");
-                bsheetElementsList[bsIterator].cashValueFmtd = ft.format(bsheetElementsList[bsIterator].cashValue);
+                bsheetElementsList[bsIterator].cashValueFmtd = rf.formattedRupee(ft.format(bsheetElementsList[bsIterator].cashValue));
                 System.out.println(bsheetElementsList[bsIterator].typeAssetOrLiability + ","
                         + bsheetElementsList[bsIterator].subType + ","
                         + bsheetElementsList[bsIterator].itemDescription + ","
