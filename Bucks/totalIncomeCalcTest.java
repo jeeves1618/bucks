@@ -13,12 +13,12 @@ class totalIncomeCalcTest {
         System.out.println("Please Enter Bun Monthly Income :");
         monthlyTakeHomeTwo = scan.nextDouble();
         totalIncomeCalc T = new totalIncomeCalc(monthlyTakeHomeOne, monthlyTakeHomeTwo);
-        System.out.println("Your total Monthly Incomes is : " + T.incomeTotalFmtd);
-        System.out.println("Your monthly expenses are     : " + T.monthlyExpensesFmtd);
-        System.out.println("Your net savings is           : " + T.netSavingsFmtd);
-        System.out.println("Your rental income 1 is       : " + T.rentalIncomeOneFmtd);
-        System.out.println("Your rental income 2 is       : " + T.rentalIncomeTwoFmtd);
-        System.out.println("Your rental income 3 is       : " + T.rentalIncomeThreeFmtd);
+        System.out.println("Your total Monthly Incomes is : " + T.getIncomeTotalFmtd());
+        System.out.println("Your monthly expenses are     : " + T.getMonthlyExpensesFmtd());
+        System.out.println("Your net savings is           : " + T.getNetSavingsFmtd());
+        System.out.println("Your rental income 1 is       : " + T.getRentalIncomeOneFmtd());
+        System.out.println("Your rental income 2 is       : " + T.getRentalIncomeTwoFmtd());
+        System.out.println("Your rental income 3 is       : " + T.getRentalIncomeThreeFmtd());
         scan.close();
     }
 }

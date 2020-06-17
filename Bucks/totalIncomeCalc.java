@@ -18,20 +18,11 @@ public class totalIncomeCalc {
     private double totalCurrentLiabilities;
     private double totalNonCurrentLiabilities;
 
-    public String rentalIncomeOneFmtd;
-    public String rentalIncomeTwoFmtd;
-    public String rentalIncomeThreeFmtd;
-    public String monthlyExpensesFmtd;
-    public String annualExpensesFmtd;
-    public String incomeTotalFmtd;
-    public String netSavingsFmtd;
-    public String monthlyEMIFmtd;
-    public String totalLiabilitiesFmtd;
-    public String totalAssetsFmtd;
-    public String netWorthFmtd;
-    public String survivalDateFmtd;
     public bsheetElements[] bsheetElementsList;
     private LocalDate survivalDate;
+
+    DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
+    RupeeFormatter rf = new RupeeFormatter();
 
     public totalIncomeCalc(double monthlyTakeHomeOne, double monthlyTakeHomeTwo){
 
@@ -42,10 +33,9 @@ public class totalIncomeCalc {
         totalCurrentLiabilities = 0;
         totalNonCurrentAssets = 0;
         totalNonCurrentLiabilities = 0;
-        DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
-        RupeeFormatter rf = new RupeeFormatter();
         String fileWithPathname = "C:\\dev\\Data\\BL.xlsx";
         ingestExcel balanceSheet = new ingestExcel(fileWithPathname);
+        //IngestH2db balanceSheet = new IngestH2db();
 
         bsheetElementsList = balanceSheet.transferData();
         for (int i=0; i < bsheetElements.numofElements; i++){
@@ -98,19 +88,42 @@ public class totalIncomeCalc {
         }
         incomeTotal = monthlyTakeHomeOne + monthlyTakeHomeTwo + rentalIncomeOne + rentalIncomeTwo + rentalIncomeThree;
         netSavings = incomeTotal - monthlyExpenses - monthlyEMI;
-
-        rentalIncomeOneFmtd = rf.formattedRupee(ft.format(rentalIncomeOne));
-        rentalIncomeTwoFmtd = rf.formattedRupee(ft.format(rentalIncomeTwo));
-        rentalIncomeThreeFmtd = rf.formattedRupee(ft.format(rentalIncomeThree));
-        monthlyExpensesFmtd = rf.formattedRupee(ft.format(monthlyExpenses));
-        annualExpensesFmtd = rf.formattedRupee(ft.format(monthlyExpenses*12));
-        incomeTotalFmtd = rf.formattedRupee(ft.format(incomeTotal));
-        monthlyEMIFmtd=rf.formattedRupee(ft.format(monthlyEMI));
-        netSavingsFmtd = rf.formattedRupee(ft.format(netSavings));
-        totalLiabilitiesFmtd = rf.formattedRupee(ft.format(totalCurrentLiabilities + totalNonCurrentLiabilities));
-        totalAssetsFmtd = rf.formattedRupee(ft.format(totalCurrentAssets + totalNonCurrentAssets));
-        netWorthFmtd = rf.formattedRupee(ft.format(totalCurrentAssets + totalNonCurrentAssets - totalCurrentLiabilities - totalNonCurrentLiabilities));
+    }
+    public String getRentalIncomeOneFmtd(){
+        return rf.formattedRupee(ft.format(rentalIncomeOne));
+    }
+    public String getRentalIncomeTwoFmtd(){
+        return rf.formattedRupee(ft.format(rentalIncomeTwo));
+    }
+    public String getRentalIncomeThreeFmtd(){
+        return rf.formattedRupee(ft.format(rentalIncomeThree));
+    }
+    public String getMonthlyExpensesFmtd(){
+        return rf.formattedRupee(ft.format(monthlyExpenses));
+    }
+    public String getAnnualExpensesFmtd(){
+        return rf.formattedRupee(ft.format(monthlyExpenses*12));
+    }
+    public String getIncomeTotalFmtd(){
+        return rf.formattedRupee(ft.format(incomeTotal));
+    }
+    public String getMonthlyEMIFmtd(){
+        return rf.formattedRupee(ft.format(monthlyEMI));
+    }
+    public String getNetSavingsFmtd(){
+        return rf.formattedRupee(ft.format(netSavings));
+    }
+    public String getTotalLiabilitiesFmtd(){
+        return rf.formattedRupee(ft.format(totalCurrentLiabilities + totalNonCurrentLiabilities));
+    }
+    public String getTotalAssetsFmtd(){
+        return rf.formattedRupee(ft.format(totalCurrentAssets + totalNonCurrentAssets));
+    }
+    public String getNetWorthFmtd(){
+        return rf.formattedRupee(ft.format(totalCurrentAssets + totalNonCurrentAssets - totalCurrentLiabilities - totalNonCurrentLiabilities));
+    }
+    public String getSurvivalDateFmtd(){
         survivalDate =  LocalDate.now().plusDays(Math.round((totalCurrentAssets-1001515)*365/totalCurrentLiabilities));
-        survivalDateFmtd = survivalDate.toString();
+        return survivalDate.toString();
     }
 }

@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 
 public class IngestH2db{
     private static final String QUERY = "select BALTYPE ,BALSUBTYPE ,BALDESCCODE ,BALAMOUNT from BALSHEET where BALACTIVEIND = ?";
-    public static void main(String[] args) {
+    protected bsheetElements[] transferData() {
         int bsIterator = 0;
         DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
         RupeeFormatter rf = new RupeeFormatter();
@@ -34,17 +34,14 @@ public class IngestH2db{
                 bsheetElementsList[bsIterator].itemDescription = rs.getString("BALDESCCODE");
                 bsheetElementsList[bsIterator].cashValue = rs.getDouble("BALAMOUNT");
                 bsheetElementsList[bsIterator].cashValueFmtd = rf.formattedRupee(ft.format(bsheetElementsList[bsIterator].cashValue));
-                System.out.println(bsheetElementsList[bsIterator].typeAssetOrLiability + ","
-                        + bsheetElementsList[bsIterator].subType + ","
-                        + bsheetElementsList[bsIterator].itemDescription + ","
-                        + bsheetElementsList[bsIterator].cashValue + ","
-                        + bsheetElementsList[bsIterator].cashValueFmtd);
                 bsIterator++;
             }
         } catch (SQLException e) {
             H2JDBCconnect.printSQLException(e);
         }
-        // Step 4: try-with-resource statement will auto close the connection.
+        // Return the array of data ingested from DB to the processing layer
+        bsheetElements.numofElements = bsIterator;
+        return bsheetElementsList;
     }
 
 }

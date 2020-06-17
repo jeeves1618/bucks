@@ -20,7 +20,7 @@ public class ingestExcel{
     public ingestExcel(String fileWithPathname){
         this.fileWithPathname = fileWithPathname;
     }
-    public bsheetElements[] transferData() {
+    protected bsheetElements[] transferData() {
         int bsIterator = 0;
         try {
             FileInputStream file=new FileInputStream(new File(fileWithPathname));
