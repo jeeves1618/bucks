@@ -1,6 +1,7 @@
 package ExpenseAnalyzer;
 
 import Bucks.RupeeFormatter;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -23,14 +24,12 @@ public class ExpenseCalculator {
     private double totalDeposits;
     private double Unknown;
 
-    private String transactionRemarks;
-    private String fileWithPathname;
-
     DecimalFormat ft = new DecimalFormat("Rs ##,##,##0.00");
     RupeeFormatter rf = new RupeeFormatter();
 
     public ExpenseCalculator(String accountHolder, String accountType){
 
+        String fileWithPathname;
         if (accountHolder == "Ben")
             fileWithPathname = "C:\\dev\\Data\\BenAcctSal.xlsx";
         else
@@ -38,11 +37,12 @@ public class ExpenseCalculator {
 
         IngestStatementExcel balanceSheet = new IngestStatementExcel(fileWithPathname);
         //IngestH2db balanceSheet = new IngestH2db();
-        AccountStatement AccountStatementEntry = new AccountStatement();
+
         ArrayList<AccountStatement> AccountStatementList;
         AccountStatementList = balanceSheet.transferData();
         for (int i=0; i < AccountStatement.numofElements; i++){
-            transactionRemarks = AccountStatementList.get(i).transactionRemarks;
+            String transactionRemarks = AccountStatementList.get(i).transactionRemarks;
+
             if(transactionRemarks.contains("INF/INFT/") && transactionRemarks.contains("/Self")) {
                 AccountStatementList.get(i).entryCategory = "Savings";
                 totalSavings = totalSavings + AccountStatementList.get(i).withdrawalAmount - AccountStatementList.get(i).depositAmount;

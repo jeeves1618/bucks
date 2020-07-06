@@ -120,6 +120,13 @@ public class IngestStatementExcel{
             e.printStackTrace();
         }
         AccountStatement.numofElements = bsIterator;
+        Iterator<AccountStatement> StatementIterator = AccountStatementList.iterator();
+        AccountStatement AccountStatementTemp = new AccountStatement();
+        while (StatementIterator.hasNext()){
+            AccountStatementTemp = StatementIterator.next();
+            System.out.println("transactionRemarks: " + AccountStatementTemp.transactionRemarks + "Withdrawal: "
+                    + AccountStatementTemp.withdrawalAmount + "Deposit: " + AccountStatementTemp.depositAmount);
+        }
         return AccountStatementList;
     }
 }
