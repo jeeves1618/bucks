@@ -16,9 +16,10 @@ class totalIncomeCalcTest {
         System.out.println("Your total Monthly Incomes is : " + T.getIncomeTotalFmtd());
         System.out.println("Your monthly expenses are     : " + T.getMonthlyExpensesFmtd());
         System.out.println("Your net savings is           : " + T.getNetSavingsFmtd());
-        System.out.println("Your rental income 1 is       : " + T.getRentalIncomeOneFmtd());
-        System.out.println("Your rental income 2 is       : " + T.getRentalIncomeTwoFmtd());
+        System.out.println("Your rental income 1 is       : " + T.totalCurrentLiabilities);
+        System.out.println("Your rental income 2 is       : " + T.totalCurrentAssets);
         System.out.println("Your rental income 3 is       : " + T.getRentalIncomeThreeFmtd());
+        //System.out.println("Your rental income 3 is       : " + T.getSurvivalDateFmtd());
         scan.close();
     }
 }

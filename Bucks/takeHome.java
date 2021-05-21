@@ -40,10 +40,12 @@ public class takeHome {
                 this.annualSalary = bsheetElementsList[i].cashValue;
             }
             professionalTax = 2496.0D;
+            houseLoanInt = 200000.0D;
             section80c = 150000.0D;
             standardDeduction = 50000.0D;
             employmentTax=2500.0D;
             this.PF = (annualSalary * 0.4 * 0.12) / 12;
+            if (itemDescription.equals("BenSalary")) this.PF = 167538/12;
         }
     }
     public void calculateOldTakeHome() {

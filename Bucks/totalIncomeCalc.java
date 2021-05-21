@@ -13,9 +13,9 @@ public class totalIncomeCalc {
     private double monthlyEMI;
     private double incomeTotal;
     private double netSavings;
-    private double totalCurrentAssets;
+    public double totalCurrentAssets;
     private double totalNonCurrentAssets;
-    private double totalCurrentLiabilities;
+    public double totalCurrentLiabilities;
     private double totalNonCurrentLiabilities;
 
     public bsheetElements[] bsheetElementsList;
