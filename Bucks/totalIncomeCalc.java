@@ -123,7 +123,7 @@ public class totalIncomeCalc {
         return rf.formattedRupee(ft.format(totalCurrentAssets + totalNonCurrentAssets - totalCurrentLiabilities - totalNonCurrentLiabilities));
     }
     public String getSurvivalDateFmtd(){
-        survivalDate =  LocalDate.now().plusDays(Math.round((totalCurrentAssets-1001515)*365/totalCurrentLiabilities));
+        survivalDate =  LocalDate.now().plusDays(Math.round((totalCurrentAssets)*365/totalCurrentLiabilities));
         return survivalDate.toString();
     }
 }

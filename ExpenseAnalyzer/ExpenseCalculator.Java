@@ -321,6 +321,9 @@ public class ExpenseCalculator {
     public double getTotalInvestments(){
         return totalInvestment/monthsBetween;
     }
+    public double getHousekeepingExpenses(){
+        return housekeepingExpenses/monthsBetween;
+    }
     public double getTotalIncome(){
         return (salaryIncome + dividendIncome + interestIncome + rentalIncome + saleProceeds)/monthsBetween;
     }
