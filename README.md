@@ -27,3 +27,4 @@ The goal of this project is to create reusable programs for tax computation, sav
 	Directory: cd c:\Program Files (x86)\H2\bin
 	To get into Shell: java -cp h2-*.jar org.h2.tools.Shell
 	<namerev>
+10. =CONCATENATE(RIGHT(C2,4),MID(C2,4,2),LEFT(C2,2))
