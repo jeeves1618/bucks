@@ -28,3 +28,10 @@ The goal of this project is to create reusable programs for tax computation, sav
 	To get into Shell: java -cp h2-*.jar org.h2.tools.Shell
 	<namerev>
 10. =CONCATENATE(RIGHT(C2,4),MID(C2,4,2),LEFT(C2,2))
+		
+chartOfAccounts = C:\\dev\\Data\\ChartOfAccounts.xlsx
+NLPtokenizer = C:\\dev\\Data\\NLP.xlsx
+OneSal1 = C:\\dev\\Data\\OneAcctSal1.xlsx
+TwoSal1 = C:\\dev\\Data\\TwoAcctSal1.xlsx
+OneSav1 = C:\\dev\\Data\\OneAcctSav1.xlsx
+TwoSav1 = C:\\dev\\Data\\TwoAcctSav1.xlsx
